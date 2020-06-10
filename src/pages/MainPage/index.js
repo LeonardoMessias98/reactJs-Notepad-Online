@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import {  Layout, Menu, Card  } from 'antd';
-import {EditOutlined, SettingOutlined, EllipsisOutlined,
+import {EditOutlined, SettingOutlined, DeleteOutlined,
     FileAddOutlined,RightSquareOutlined, DownSquareOutlined, 
     FileOutlined, CoffeeOutlined, BulbOutlined} from '@ant-design/icons';
 
@@ -19,6 +19,7 @@ function Main({ note }){
   const [dark, setDark] = useState('#001529');
   const [h1Header, setH1Header] = useState('white');
 
+  const dispatch = useDispatch();
   const history = useHistory();
 
   function handleColapse(){
@@ -141,7 +142,10 @@ function Main({ note }){
                       each_note.id)
                     }}/>,
                     
-                <EllipsisOutlined key="ellipsis" />,
+                <DeleteOutlined 
+                  key="delete"
+                  onClick={()=>{dispatch({type:'DELETE_NOTE', id: each_note.id})}}
+                  />,
               ]}
               >
               {each_note.textValue}

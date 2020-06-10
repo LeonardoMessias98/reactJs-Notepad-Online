@@ -105,7 +105,7 @@ function Note(props){
                 </Menu.Item>
               <Menu.Item 
                 icon={<DeleteOutlined />}
-                onClick={()=>{dispach({ type: 'DELETE_NOTE' })}}
+                onClick={()=>{dispach({ type: 'DELETE_NOTE', id : noteData.id })}}
                 >Delete File</Menu.Item>   
             </SubMenu>
 
