@@ -6,6 +6,8 @@ import {EditOutlined, SettingOutlined, DeleteOutlined,
     FileAddOutlined,RightSquareOutlined, DownSquareOutlined, 
     FileOutlined, CoffeeOutlined, BulbOutlined} from '@ant-design/icons';
 
+import * as NoteActions from '../../store/module/note/actions'
+
 import 'antd/dist/antd.css';
 import './style.css';
 
@@ -144,7 +146,7 @@ function Main({ note }){
                     
                 <DeleteOutlined 
                   key="delete"
-                  onClick={()=>{dispatch({type:'DELETE_NOTE', id: each_note.id})}}
+                  onClick={()=>{dispatch(NoteActions.deleteLocal(each_note.id))}}
                   />,
               ]}
               >

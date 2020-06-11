@@ -10,6 +10,7 @@ export default function note(state =[], action){
       }
 
       return[ ...state, action.note];
+    
     case 'DELETE_NOTE':
       const idIndex = state.findIndex(note => note.id === action.id);
 

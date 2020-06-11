@@ -3,6 +3,8 @@ import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Layout, Input, Menu } from 'antd';
 
+import * as NoteActions from '../../store/module/note/actions'
+
 import { SaveOutlined, DeleteOutlined, 
     FileOutlined, SettingOutlined, CoffeeOutlined, 
     BulbOutlined, HomeOutlined} from '@ant-design/icons';
@@ -38,14 +40,7 @@ function Note(props){
 
 
   function handleColapse(){
-
-    if(colapse){
-      setColapse(false);
-      return;
-    }else{
-      setColapse(true)
-    }
-  }
+    return colapse ? setColapse(false) : setColapse(true);}
 
   function handleTheme(theme){
     if(theme === 'dark'){
@@ -70,10 +65,7 @@ function Note(props){
         textValue
       };
 
-    dispach({
-      type:'SAVE_NOTE',
-      note,
-    })
+    dispach(NoteActions.saveLocal(note))
 
   }
 
@@ -105,7 +97,7 @@ function Note(props){
                 </Menu.Item>
               <Menu.Item 
                 icon={<DeleteOutlined />}
-                onClick={()=>{dispach({ type: 'DELETE_NOTE', id : noteData.id })}}
+                onClick={()=>{dispach(NoteActions.deleteLocal(noteData.id))}}
                 >Delete File</Menu.Item>   
             </SubMenu>
 
